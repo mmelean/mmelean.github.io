@@ -22,10 +22,25 @@
  *  c. you'll wanna make use of the push() method of Array.
  */
 function range(start, end) {
-    // YOUR CODE GOES BELOW HERE //
-    
-    
-    
+    // list numbers between two integers which are given including those integers 
+    // create empty array to collect data //
+    let newArray =[];
+    //use conditional statement to check if start integer is less than end integer 
+    if (start < end){
+    // use for loop to start at start number and end at end number 
+    for( let i = start; i <= end; i++)
+    // push each number onto empty array
+        newArray.push(i);
+    // 2nd conditional statement will check if end is smaller than start 
+    }else if (end < start){
+    // use for loop to start at the bigger number which is start and count down to end     
+        for (let i = start;  i >= end; i--)
+    // push those numbers onto the array     
+            newArray.push(i);
+        
+    }
+    // finally return the array with the range of numbers listed 
+    return newArray;
     
     // YOUR CODE GOES ABOVE HERE //
 }

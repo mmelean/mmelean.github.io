@@ -152,8 +152,10 @@ return newString;
  *      in an Array called args.
  */
 function join(stringOne, stringTwo) {
-    // YOUR CODE BELOW HERE //
-    // simply add .join with no spaces so all arguaments will be joined
+    // by using the Array.from(arguments) method this takes all arguments and combines them 
+    //into an array with commas 
+    // simply add .join with no spaces so we then convert the array into a string with no spaces
+    // this could be another option: var args = [...arguments].join('');  using the spread operator
     var args = Array.from(arguments).join('');
     //return the final result
     return args;
@@ -193,7 +195,7 @@ if (stringTwo.length > stringOne.length){
  * TIP: How can we compare Strings? Is 'a' greater than or less than 'b'?
  */
 function sortAscending(stringOne, stringTwo) {
-    // compare stringOne to stringTwo and return -1 if stringOne is greater in value
+ //   compare stringOne to stringTwo and return -1 if stringOne is greater in value
 if(stringOne > stringTwo){
     return -1;
 // return 1 if it is less in value 
@@ -203,6 +205,8 @@ if(stringOne > stringTwo){
 // set default to 0 if they are equal     
     return 0;
 }
+
+
 
 
 

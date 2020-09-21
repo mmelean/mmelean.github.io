@@ -13,8 +13,13 @@
  * work?
  */
 function isArray(value) {
-    // YOUR CODE BELOW HERE //
-    
+// create conditional statement to check if the value is an array
+// you cannot use type of because it will return object 
+    if (Array.isArray(value)){
+        return true;
+    }else{
+        return false;
+    }
     
     
     
@@ -30,8 +35,22 @@ function isArray(value) {
  * with typeof.
  */
 function isObject(value) {
-    // YOUR CODE BELOW HERE //
-    
+    // create conditional statement to check if value is an object //
+    // first rule out other items that can return as objects like Array,null and Date
+    // and return false for those items 
+    if(Array.isArray(value)){
+        return false;
+    }else if(value === null){
+        return false;
+    }else if(value instanceof Date) {
+        return false;
+    // then using type of to test value if it is an object return true     
+    }else if (typeof value === 'object'){
+        return true;
+    // create final false return for outliers that may not fall into these categories    
+    }else{
+        return false;
+    }
     
     
     
@@ -45,8 +64,25 @@ function isObject(value) {
  * TIP: Similar to isObject, but we must return true if the value is an Array.
  */
 function isCollection(value) {
-    // YOUR CODE BELOW HERE //
+    //check to see if the value is an array or a collection type object //
+    //use array.isArray to check for array and return true if it is an array
     
+    
+    if(Array.isArray(value)){
+        return true;
+    // sort out if value is null because that also can return as an object  to return false   
+    }else if (value === null){
+        return false;
+    // and for date     
+    }else if (value instanceof Date){
+        return false;
+    // then if typeof returns object return true    
+    }else if (typeof value === 'object'){
+        return true;
+    // include a final return false for all other outliers     
+    }else {
+        return false;
+    }
     
     
     
@@ -73,10 +109,20 @@ function isCollection(value) {
  *    typeOf([1,2,3]) -> "array"
  */ 
 function typeOf(value) {
-    // YOUR CODE BELOW HERE //
+    // evaluate if it is an array to return "array" //
+    if(Array.isArray(value)){
+        return "array";
+    }else if (value === null){
+    // if it's null to return "null"
+        return "null";
+    }else if (value instanceof Date){
+    // and if it's date to return "date"    
+        return "date";
+    }else {
+    // otherwise just return appropriate type of value which will be a string     
+        return typeof value;
     
-    
-    
+    }  
     
     // YOUR CODE ABOVE HERE //
 }
