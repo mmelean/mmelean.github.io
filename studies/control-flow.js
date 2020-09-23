@@ -95,10 +95,10 @@ if(weather === 'hot'){
 // We could use an else statement to account for what to do 
 // if weather is something other than 'hot' or 'cold'. 
 
-let weather = 'chilly';
-if(weather === 'hot'){
+let weather2 = 'chilly';
+if(weather2 === 'hot'){
     console.log("Whew it's hot");
-} else if(weather === 'cold'){
+} else if(weather2 === 'cold'){
     console.log('I need a jacket');
 } else {
     console.log("I don't know what to tell you")
@@ -113,3 +113,22 @@ if(weather === 'hot'){
 // response.  
 
 // 4. Switch
+// A switch statement is a good way to use the control flow process 
+// when first using a baseline statement then using 
+// different value outcomes of the statement and what 
+// code would run based on each value. It can be a good
+// alternative if you have many nested if else statements. 
+// Essentially it you provide a case and it will run a corresponding 
+// block of code. 
+
+// SYNTAX: 
+//  switch(expression) {
+//   case n:
+// //    code block
+//     break;
+//   case n:
+//     code block
+//     break;
+//   default:
+//     default code block
+// }
