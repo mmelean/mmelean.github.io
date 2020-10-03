@@ -46,6 +46,12 @@ _.identity = function( value ){
 * _.typeOf([1,2,3]) -> "array"
 */
 
+// I: value
+// O: string stating what the value is 
+
+// use Array.is Array to check if it's an array and also check if the value 
+// is null.  Indicate a specific string of 'array' and 'null' for these because
+// otherwise using type of will return 'object for these'
 _.typeOf = function (value){
     if( Array.isArray(value)){
         return "array"; 
@@ -73,6 +79,17 @@ _.typeOf = function (value){
 *   _.first(["a", "b", "c"], 1) -> "a"
 *   _.first(["a", "b", "c"], 2) -> ["a", "b"]
 */
+
+// I: array, number
+// O: new array with the <number> of elements from beginning of array
+
+// Use conditional statement to check for outliers so if an array is not given or the number is negative
+// then just return an empty array. If the <number> is not a number return the first
+// element in the array. If the the number is greater than the array length then
+// return the entire array. 
+// otherwise just splice the array from the 0 to the <number> of elements and that 
+// will return the new array
+// 
 
 _.first = function(array,number){
     if(!Array.isArray(array)|| number < 0){
@@ -108,6 +125,15 @@ _.first = function(array,number){
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
 
+// I: array, number
+// O: array with number of elements from end of array
+
+// use conditional to see if array is given or if number is negative then return
+// []. Also if number is not given then return last element, and if number is greater
+// than array length then return entire array. 
+// otherwise use slice to cut off a piece of the array a certain number of items 
+// from the end off 
+
 _.last = function(array, number){
     if(!Array.isArray(array)|| number < 0){
         return [];
@@ -137,6 +163,11 @@ _.last = function(array, number){
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
 
+// I: array, value
+// O: return number indicating index where value was found in the array 
+
+// use for loop to search through array to look for value. If it is found exit 
+// loop by returning index where it was found. If it is not found return -1. 
 _.indexOf = function(array, value){
     for(let i = 0; i < array.length; i++){
         if(value === array[i]){
@@ -164,6 +195,10 @@ _.indexOf = function(array, value){
 *   _.contains([1,"two", 3.14], "two") -> true
 */
 
+// I: array, value
+// O: true or false depending on if value is found in array
+
+// Using ternary statement check if array includes the value 
 _.contains = function( array, value){
     return(array.includes(value)? true: false);
 };
@@ -183,6 +218,15 @@ _.contains = function( array, value){
 *   _.each(["a","b","c"], function(e,i,a){ console.log(e)});
 *      -> should log "a" "b" "c" to the console
 */
+
+// I: collection, function
+// O: there is no return from this but it will loop through each element and apply
+//.   the function 
+
+// if its an array type of collection loop through it and apply function to each 
+// element index and array
+// if its an object type of collection then use for in loop and apply function
+// to the value, key and object 
 
 _.each = function(collection, func){
     if (Array.isArray(collection)){
@@ -207,6 +251,13 @@ _.each = function(collection, func){
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
 
+// I: array
+// O: new array with duplicates removed
+
+// create empty array for data, loop through given array push each element onto 
+// new array.  While doing this check if the element you are about to push is 
+// already in the new array, if so, then don't push it.  
+// finally just return that new array.  
 _.unique = function(array){
     let newArray =[];
     for( let i = 0; i< array.length; i++){
@@ -232,13 +283,20 @@ _.unique = function(array){
 * Extra Credit:
 *   use _.each in your implementation
 */
+
+// I: array, function 
+// O: new array elements for which applying the function returned true
+
+// create empty array to collect data, use each to loop through elements and 
+// apply the function to each element then if that resolves to true push it 
+// onto the empty array 
 _.filter = function(array, func){
     let filterArray = [];
    _.each(array,function(e, i, array){
-    let outcome = func(e,i,array);
-    if(outcome === true){
-    filterArray.push(e); 
-    }
+       let outcome = func(e,i,array);
+            if(outcome === true){
+            filterArray.push(e); 
+            }
    });
     return filterArray;
 };
@@ -256,6 +314,23 @@ _.filter = function(array, func){
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
 
+// I: array, function
+// O: new array for which the function applied to its elements returned false
+
+// create empty array to collect data. Use each to loop through elements in 
+// array and apply function. Push only those elements that return false onto the 
+// new array. 
+_.reject = function(array, func){
+    
+    let falseArray = [];
+    _.each(array,function(e, i, array){
+    let outcome = func(e,i,array);
+        if(outcome === false){
+        falseArray.push(e); 
+        }
+    });
+    return falseArray;
+};
 
 /** _.partition
 * Arguments:
@@ -276,6 +351,32 @@ _.filter = function(array, func){
 }
 */
 
+// I: array, function
+// O: new array containing two subarrays: one with true results, one with false results
+
+// create two empty arrays to collect separate data 
+// use each to loop through array and apply the function then push the 
+// true results onto one array and the false results onto the other array
+// finally just return a new array containing the other two arrays. 
+
+// this is another option utilizing the filter and reject functions 
+// return [_.filter(array,func), _.reject(array,func)];
+_.partition = function(array, func){
+    
+  
+    let truthy = [];
+    let falsy = [];
+    _.each(array, function( e, i, array){
+         if(func(e, i, array)){
+              truthy.push(e);   
+            }else if(!func(e, i , array)){
+                falsy.push(e);
+            }
+        
+    });
+    return [truthy,falsy];
+};
+
 
 /** _.map
 * Arguments:
@@ -293,6 +394,35 @@ _.filter = function(array, func){
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
 
+//I: collection, function 
+// O: new array containing elements of original collection after having the function
+//.   applied
+
+// first create empty array to collect data, You can you each function to loop
+// through the items and apply the function to each element then push those items 
+// onto the empty array
+_.map = function(collection, func){
+    let newArray = [];
+    if (Array.isArray(collection)){
+        for( let i = 0; i < collection.length; i++){
+            
+            newArray.push(func(collection[i], i, collection));
+        }
+    }else if (typeof collection === 'object'){
+        for( let key in collection){
+            newArray.push(func(collection[key], key, collection));
+        }
+    }
+    return newArray;
+};
+// here is a second option using each 
+//     let newArray = [];
+//     _.each(collection, function( thing, i, array){
+//       newArray.push(func(thing,i,array)); 
+//     });
+//     return newArray;
+    
+
 
 /** _.pluck
 * Arguments:
@@ -303,7 +433,20 @@ _.filter = function(array, func){
 *   2) You must use _.map() in your implementation.
 * Examples:
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
+*
 */
+
+//I: array , property(key)
+//O: array containing the items that were values for the key that matched the property
+// given 
+_.pluck = function(array, property){
+    
+  return _.map(array, function(element){
+        return element[property];
+    });
+    
+    
+};
 
 
 /** _.every
@@ -327,6 +470,33 @@ _.filter = function(array, func){
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
 
+// I: collection , function 
+// O: boolean giving true if applying the function to each element in the collection
+//.   results in true value
+
+// create baseline status of true 
+// loop through the items applying the function to all of them and change that 
+// baseline to false if it finds a false value or if no function is given and every 
+// item on its own is false 
+
+_.every = function(collection,func){
+    let result = true;
+    _.each(collection, function(e, i, collection){
+        if (typeof func === "function"){ 
+            if(!func(e ,i, collection)){
+        
+            result = false;
+            }
+            
+        }else if ( !e ){
+          result = false;
+        }
+        
+        
+    });
+   return result;  
+}; 
+
 
 /** _.some
 * Arguments:
@@ -349,6 +519,29 @@ _.filter = function(array, func){
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 
+// I: collecion , func
+// O: boolean : if at least one item is true after applying function return true 
+
+// start with baseline at false this time and change it to true if one true item is
+// found after looping through and applying the function or if no function is given 
+// and at least one item on its own is true
+_.some = function(collection, func){
+    let result = false;
+    _.each(collection, function(e,i,collection){
+        if(typeof func !== "function"){
+            
+            if (e){
+            result = true;
+            }
+        }
+        else if(func(e, i, collection)){
+            result = true;
+        }
+        
+        
+    });
+    return result; 
+};
 
 /** _.reduce
 * Arguments:
@@ -369,6 +562,31 @@ _.filter = function(array, func){
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
 
+// I: array, function, seed 
+// O: Final value after running the final function call through all the elements in the array
+
+// set your starting point as the seed, if no seed is given then the starting point will be the array[0]. 
+// Then begin to run the function through each item in the array by looping through it and changing each final result
+// subsequent based off the previous result 
+_.reduce = function(array,func,seed){
+    
+        let previous = seed;
+        if(seed === undefined){
+            let previous = array[0];
+            _.each(array, function( e, i ,array){
+                if(i!==0){
+                previous= func(previous, e, i );
+                }
+            });
+        return previous; 
+        }
+        _.each(array, function( e, i ,array){
+            previous = func(previous, e, i);
+        });
+        return previous;
+        
+
+};
 
 /** _.extend
 * Arguments:
@@ -384,6 +602,15 @@ _.filter = function(array, func){
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+
+// I: object 1, object 2, possible unlimited objects
+// O: one object with all items from other objects copied into it 
+
+// Use Object.assign to copy items from one object to another and the spread operator to take into account unlimited
+// number of objects
+_.extend = function(object1, object2){
+    return Object.assign(...arguments);
+};
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
