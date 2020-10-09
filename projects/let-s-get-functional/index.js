@@ -155,6 +155,7 @@ var friendFirstLetterCount = function(array,customer, letter){
     return friend.length;
 };
 
+
 // I: array, name 
 // O: array with names of customers who have the given cutomer's name in their friends list 
 
