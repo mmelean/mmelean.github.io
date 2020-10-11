@@ -3,14 +3,31 @@
 // triangles ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function triangles() {
+function triangles(num) {
+   // use for loop with initial point being one '#' and the end point length being the given num
+   // increment by one '#' on each loop 
+  for(let i = '#';i.length <= num; i+='#'){
+  // console.log each loop which should add the given number of rows of #'s 
+  console.log(i);
+  
+  }
+  
 
 }
 ////////////////////////////////////////////////////////////////////////////////
 // fizzBuzz ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function fizzBuzz() {
+function fizzBuzz(num) {
+  for(let i = 1; i <= num; i++){
+    if( i % 5 ===0 && i % 3===0){
+      console.log('FizzBuzz');
+    }else if( i%5 ===0){
+      console.log("Buzz");
+    }else if{
+      
+    }
+  }
   
 }
 

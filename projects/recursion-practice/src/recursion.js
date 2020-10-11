@@ -7,11 +7,13 @@
 
 
 var factorial = function(n) {
+// base case if n is 0 return null and if n is 1 return 1   
   if(n < 0) {
     return null;
   }else if (n === 0){
     return 1;
   }
+  // recursive statement with multiply n by n - 1 each time 
   
   return n * factorial(n - 1);
 };
@@ -24,11 +26,14 @@ var factorial = function(n) {
 // the recursive statement will add your first number from your array with the first item removed
 // each time 
 var sum = function(array) {
+// base case when array length is 0 then the sum is 0   
   if(array.length === 0){
     return 0;
+// otherwise if the array has only one item just return that item     
   }else if ( array.length === 1){
     return array[0];
   }
+// the recursive statement will the first item plus the array having one item sliced off each time until it gets down to the base case   
   return array[0] + sum(array.slice(1));
 };
 
@@ -205,6 +210,10 @@ var modulo = function(x, y) {
 
 // 12. Write a function that multiplies two numbers without using the * operator  or
 // JavaScript's Math object.
+
+// for multiply the base cases for y =1 will just return the y argument , also if y is 0 the result will be 0
+// and if y is negaitve then you will implement one recursive statement turning each parameter negative
+// otherwise increment y down by one each time and add x that number of times 
 var multiply = function(x, y) {
   if(y===1){
     return x;
@@ -250,17 +259,23 @@ var compareStr = function(str1, str2) {
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
+
 var createArray = function(str){
+// base case if the string length is 0 then return an array 
+  
   if(str.length === 0){
     return [];
   }
+// otherwise implement recursive statement which will place each letter one by into the array  
   return [str[0]].concat(createArray(str.slice(1)));
   };
 
 
 // 17. Reverse the order of an array
 var reverseArr = function (array) {
+// base case when array length is 0 then return empty array  
   if(array.length === 0) return [] ;
+// otherwise implement recursive statement which takes each letter and adds it backwards into the new array   
   return reverseArr(array.slice(1)).concat(array[0]);
   
 };
@@ -269,9 +284,11 @@ var reverseArr = function (array) {
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
 var buildList = function(value, length) {
+//. base case if the length given is 0 just return empty []  
   if(length === 0){
     return [];
   }
+// otherwise implement recursive statement with takes the value and adds it to the array 'length' number of times   
   return [value].concat(buildList(value, length-1));
 };
 
@@ -279,22 +296,27 @@ var buildList = function(value, length) {
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
 var countOccurrence = function(array, value) {
+// create new variable to start at 0   
   let num =0;
+// base case for when the array length is 0 to return the num   
   if(array.length === 0){
     return num;
   }
+// if the value given matches the item in the array then increase num  by 1  
   if(array[0] === value){
     num++;
   }
+// recursive statement will take num and add it for every item in the array that matches the value   
   return num + countOccurrence(array.slice(1), value);
 };
 
 // 20. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
 var rMap = function(array, callback) {
+// when the array length is 0 return the empty array   
   if (array.length === 0) return [];
   
-  
+ // recursive statement will take each item in the array and apply the callback putting the result into the empty array  
   return [callback(array[0])].concat(rMap(array.slice(1),callback));
   
 };
@@ -332,9 +354,11 @@ var fibonacci = function(n) {
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 var nthFibo = function(n) {
+//base case if n is less than 1 then return null   
   if (n <0)return null;
+// if n is 0 or 1 return n   
   if(n <=1) return n;
-  
+ // recursive statement will decrease n by 1 and by 2 adding them to result in the nth index placement of the number given  
   return  nthFibo(n-1) + nthFibo(n-2);
 };
 
@@ -342,15 +366,20 @@ var nthFibo = function(n) {
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
 var capitalizeWords = function(input) {
+// base case if input array is 0 return empty array   
   if(input.length === 0) return [];
+// recursive statement will add each item one by one after capitalizing each word  
   return [input[0].toUpperCase()].concat(capitalizeWords(input.slice(1)));
 };
 
 // 27. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car', 'poop', 'banana']); // ['Car', 'Poop', 'Banana']
 var capitalizeFirst = function(array) {
+// base case when array length is 0 return empty array  
   if(array.length === 0) return [];
+// create variable that will pull first letter from each item and capitalize it   
   let firstLetter = [array[0][0].toUpperCase() + array[0].slice(1)];
+// recursive statement will use that variable and utilize it on each word adding 1 by 1 to the empty array   
   return firstLetter.concat(capitalizeFirst(array.slice(1))); 
 };
 
@@ -374,19 +403,23 @@ var flatten = function(arrays) {
 // 30. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
 var letterTally = function(str, obj) {
+// base case if string length is 0 then return   
   if(str.length === 0) return;
+// if the obj is undefined then return an empty object   
   if(obj === undefined) {
     obj = {};
   }
   
-  
+  // if the item of the object matching the string is found then add one 
   if(obj[str[0]]){
     obj[str[0]]++;
   }else {
+  // if it isn't found then make it a key with a value of 1   
     obj[str[0]] =1;
   }
-  
+  // recursive statement will run through each letter 
   letterTally(str.slice(1),obj);
+  // return the final object which should have the accumulated counts 
   return obj;
   
   
@@ -398,17 +431,20 @@ var letterTally = function(str, obj) {
 // Example: compress([1, 2, 2, 3, 4, 4, 5, 5, 5]) // [1, 2, 3, 4, 5]
 // Example: compress([1, 2, 2, 3, 4, 4, 2, 5, 5, 5, 4, 4]) // [1, 2, 3, 4, 2, 5, 4]
 var compress = function(list) {
+// base case if the list length is 1 just return the list   
   if(list.length <= 1) return list;
-  
+  // create empty array 
   var shortList = [];
+// another base case if the first item in the list matches the second item then remove the first item  
   if(list[0] === list[1])
   {
     list.shift();
-    
+  // and implement recursive statement concat the list  
     return shortList.concat(compress(list));
   }else{
+  // otherwise just push the items onto the new list   
     shortList.push(list[0]);
-    
+  // and use recursive statement to run through each item   
     return shortList.concat(compress(list.slice(1,)));
   }
 };
@@ -423,13 +459,19 @@ var augmentElements = function(array, aug) {
 // minimizeZeroes([2,0,0,0,1,4]) // [2,0,1,4]
 // minimizeZeroes([2,0,0,0,1,0,0,4]) // [2,0,1,0,4]
 var minimizeZeroes = function(array) {
+// base case if array length is 1 return the array   
   if(array.length <= 1) return array;
+// create empty array   
   var shortList = [];
+// if first item and second item are equal and the first item is a 0   
   if(array[0] === array[1] && array[0] === 0)
   {
+  //then remove the first item   
     array.shift();
+  // use recursion to add this to array   
     return shortList.concat(minimizeZeroes(array));
   }else{
+// otherwise just push the first item and use recursion the run through each number     
     shortList.push(array[0]);
     return shortList.concat(minimizeZeroes(array.slice(1,)));
   }
@@ -440,9 +482,13 @@ var minimizeZeroes = function(array) {
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
 var alternateSign = function(array) {
+  // if array length is 0 return array 
     if (array.length === 0) { return array; }
+// another base case if the first item is neg then convert it to positive     
     if(array[0] < 0) { array[0] = -array[0]; }
+// base case if the second item is positive then convert it to positive     
     if(array[1] > 0) { array[1] = -array[1]; }
+// otherwise use recursive statement to run through the items two at a time     
     return [array[0], array[1]].concat(alternateSign(array.slice(2)));
   
 };
@@ -451,18 +497,21 @@ var alternateSign = function(array) {
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
 var numToText = function(str) {
+// create variable object giving the numbers their corresponding word values (only test numbers included here)  
     const numConversions = {
     1: "one",
     3: "three",
     5: "five",
     6: "six"
   };  
+// base case if the string length is 0 then return an empty string   
   if(str.length === 0) return '';
-  
+// if first item is not a number and not a space   
   if (!isNaN(str[0]) &&  str[0] !== ' ') {
-  
+ // then use recursive statement to run through each item  using the num conversions on each item that is a number
     return numConversions[str[0]] + numToText(str.slice(1,str.length));
   }else{
+    // otherwise use recursion just normally adding the item to the empty string 
     return str[0] + numToText(str.slice(1,str.length));
   }
 };
