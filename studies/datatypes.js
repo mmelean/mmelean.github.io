@@ -143,3 +143,29 @@ typeof NaN; // equals number
 
 // 12. Primitive values are passed to a function BY COPY, complex values are BY REFERENCE. What does that mean, and how are they different?
 // see above 
+
+// COPY BY VALUE: 
+// When we say copy by value it refers to primitive datatypes and how they can be reassigned to other variables. So when we copy the information to another 
+// variable a whole new copy of that simple data type is made. Therefore there is no connection between it's original and the new copy and changes made 
+// to copy will not affect the original.  
+// EXAMPLE: 
+ let x = 22;
+ let y = x; 
+ console.log(y);  // the value of y is now 22 
+ y + 1 // y will now be 23
+ console.log(y). // y now is equal to 23 
+ console.log(x). // however x is still equal to 22 
+ 
+ // COPY BY REFERENCE: 
+ // When you copy something by reference you are copying a complex data type such as an object or array. In this case when making a copy you
+ // will only create a reference to the original because actually copying a possible large amount of data would take a lot of memory. 
+ // By being able to just refer or point to that original you can just have the item present once.  
+ // The thing that happens with this however is that now changes made to either variable that may be pointing to this original item will
+ // in fact alter that original item. 
+ // EXAMPLE: 
+ let exampleObject = {patient:"Sally", age: 55, status: "inpatient"};// this is our original object
+ let patient = exampleObject; // now we have a assigned a new variable to refer to the same object 
+ patient.status = "outpatient";  // we have assigned a new value to the status key 
+ exampleObject.status;  // this now will also be "outpatient" because our alteration affected the original item
+ 
+ 

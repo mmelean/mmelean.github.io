@@ -56,3 +56,10 @@ subtract(9,5) // result is 4
 // 7. Closures: Functions form closures around the data they house. 
 //   If an object returned from the Function and is held in memory somewhere (referenced), that closure stays ALIVE, and data can continue to exist in these closures! 
 //   (See: our meeting-room app for an example!) (ALSO, see: Understanding JavaScript Closures with Ease)
+
+// EXAMPLE : 
+let age = 55; // this variable is declared in the global scope
+let sample = function(n){
+    return age + n;// this function has now created a closure and can refer to variables within the global scope 
+};
+sample(5);

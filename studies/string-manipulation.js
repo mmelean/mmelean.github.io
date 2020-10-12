@@ -53,6 +53,25 @@ console.log(wordChanged) // "NAME"
 // because it applied the toUpperCase method 
 // to it.  
 
+// EXAMPLES OF STRING MANIPULATION: 
+// changing letters to lower case using the toLowerCase() method 
+let name = 'BOB'
+let lowerCaseName = name.toLowerCase(); // this now makes 'BOB' change to 'bob' 
+
+// you can replace a word in a string with string.replace() method by passing in the arguments of one word that you 
+// want to replace with a second argument that is the word you want to replace it with  
+let stringSentence = 'This is a great day';
+let changedSentence = stringSentence.replace('great', 'bad');
+console.log(changedSentence);  // this will print 'This is a bad day' to the console. 
+
+// you can slice a portion out of a string with the slice method.  You will pass in a number indicatin where you want the slice to start(it starts after that index)
+// and a second number to indicate where you want to stop(default is end of string).  When you set this function equal to another variable, that variable
+// holds the sliced piece. 
+let string22 = 'to one day be free';
+let string23 = string22.slice(14); // so we are slicing the phrase above after index 14
+console.log(string23); // 'free' 
+console.log(string22); // 'to one day be free'.   The original is not altered. 
+
 // NOTE:
 // string.length is a way to access a property
 // of a string.  This is not changing the 

@@ -50,14 +50,15 @@ for (var i = 0; i < numArray.length; i++){
 // FOR-IN LOOOP: 
 // These are used with objects. They are helpful in accessing 
 // the keys and values in objects. 
-// Syntax:
+// Syntax: key refers to the keys in the object and object is referring to the object from which we are referencing / see description in example below
 //for(let  key in object ){
 //    code block
 //}
 // Example:
-let people = {mom: "Martha", dad: "Robert", child:"Alex"};
-for( let key in people){
-    console.log( people[key])
+let people = {mom: "Martha", dad: "Robert", child:"Alex"};// here is our example object 
+for( let key in people){ // key refers to the keys in the object and people tells us which object we are looping through
+    console.log( people[key]) // when we pull out the keys we would just use key , but here we are pulling out the values which can be 
+    // referenced by listing the object with bracket notation of the key and that will return the values as it loops through
 }
 //Result: So the values will print on each loop. 
 //Martha
