@@ -506,9 +506,10 @@ var numToText = function(str) {
   };  
 // base case if the string length is 0 then return an empty string   
   if(str.length === 0) return '';
-// if first item is not a number and not a space   
+// if first item is  a number and not a space   
   if (!isNaN(str[0]) &&  str[0] !== ' ') {
  // then use recursive statement to run through each item  using the num conversions on each item that is a number
+ // to insert the value of the key that corresponds with str[0] which is a number 
     return numConversions[str[0]] + numToText(str.slice(1,str.length));
   }else{
     // otherwise use recursion just normally adding the item to the empty string 
