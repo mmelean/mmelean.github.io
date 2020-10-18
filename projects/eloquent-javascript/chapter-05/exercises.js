@@ -1,8 +1,9 @@
 // /////////////////////////////////////////////////////////////////////////////
 // flatten /////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
-
+// combine items from all arrays into new single array
 function flatten(arr) {
+  // use reduce with empty array as seed to concat all the items 
  return arr.reduce( (acc, curr) => acc.concat(curr),[]);
   
   
@@ -12,15 +13,31 @@ function flatten(arr) {
 // loop ////////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function loop() {
+function loop(start, test, update, body) {
+  for(let value = start; test(value); value = update(value)){
+    body(value);
+  }
 
 }
 
 // /////////////////////////////////////////////////////////////////////////////
 // every ///////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
-
-function every() {
+// takes in an array and a function 
+function every(array, predicate) {
+  // using for of loop access every item in array
+  for(let element of array){
+  // check if by passing the predicate function it results in false
+  // if even one item results in false when applying the function test
+  // then return false
+    if(!predicate(element)){
+      return false;
+    }
+  }
+  // otherwise every item would have passed the function test 
+  // therefore it would be true 
+    return true;
+  
 
 }
 
